@@ -73,7 +73,7 @@ contract ImageApp {
     * @dev log upload image
     * @param  image, description, published, tags, published date
     */
-    function uploadimage(string memory _image, string memory _description, string memory _tags, string memory _published) public {
+    function uploadImage(string memory _image, string memory _description, string memory _tags, string memory _published) public {
         require(bytes(_image).length > 0 , "Please Provide Image");
         require(bytes(_description).length > 0,"Please Provide Description");
         require(bytes(_tags).length > 0 , "Please Provide Tags For Image");
@@ -100,7 +100,7 @@ contract ImageApp {
     * @dev log update image
     * @param image id, image, description, published, tags, published date
     */
-    function updateimage(uint256 _imageId,string memory _image, string memory _description, string memory _tags, string memory _published) public  onlyOwner(_imageId) {
+    function updateImage(uint256 _imageId,string memory _image, string memory _description, string memory _tags, string memory _published) public  onlyOwner(_imageId) {
         require(_imageId > 0,"Sorry this Image Does not Exists");
         require(bytes(_image).length > 0 , "Please Provide Image");
         require(bytes(_description).length > 0,"Please Provide Description");

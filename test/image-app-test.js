@@ -1,7 +1,7 @@
 const { ethers } = require("hardhat");
 const expect = require("chai").expect;
 
-describe("Music App", async function() {
+describe("Image App", async function() {
     it("Should Upload Photo", async function () {
         const contractFactory = await ethers.getContractFactory("ImageApp");
         const contractDeploy = await contractFactory.deploy("Imagegram");

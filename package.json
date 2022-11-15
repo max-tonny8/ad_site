@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@bundlr-network/client": "^0.9.0",
+    "@bundlr-network/client": "0.7.8",
     "@openzeppelin/contracts": "^4.8.0",
     "bignumber.js": "^9.1.0",
     "next": "13.0.2",

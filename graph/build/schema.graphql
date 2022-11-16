@@ -1,0 +1,10 @@
+type Image @entity {
+  id: ID!
+  image: String!
+  description: String!
+  published: String!
+  tags: String!
+  photographer: Bytes!
+  createdAt: BigInt!
+  updatedAt: BigInt!
+}

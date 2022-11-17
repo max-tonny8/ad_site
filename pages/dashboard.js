@@ -70,12 +70,16 @@ const Dashboard = () => {
           <div className="gap-3 columns-3 md:columns-2 sm:columns-1 md:p-2">
             {images?.images?.length &&
               images?.images?.map((data) => (
-                <div key={data.id}>
+                <div key={data.id} className="relative">
                   <img
                     src={mainURL + data.image}
                     alt={data.tags}
                     className="w-full mb-3 rounded-sm"
                   />
+
+                  <div className="absolute opacity-0 backdrop-blur-sm bg-black/50 hover:opacity-100 w-full h-full left-0 top-0 p-6  cursor-pointer">
+                    <h2 className="font-bold text-3xl my-2">See Details</h2>
+                  </div>
                 </div>
               ))}
           </div>

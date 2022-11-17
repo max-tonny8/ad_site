@@ -9,6 +9,7 @@ const FETCH_IMAGES = gql`
     images(orderBy: $orderBy, orderDirection: $orderDirection) {
       id
       image
+      tags
     }
   }
 `;
@@ -65,7 +66,20 @@ const Dashboard = () => {
           </div>
         )}
 
-        
+        <section className="max-w-[1440px] flex items-center justify-center my-0 mx-auto">
+          <div className="gap-3 columns-3 md:columns-2 sm:columns-1 md:p-2">
+            {images?.images?.length &&
+              images?.images?.map((data) => (
+                <div key={data.id}>
+                  <img
+                    src={mainURL + data.image}
+                    alt={data.tags}
+                    className="w-full mb-3 rounded-sm"
+                  />
+                </div>
+              ))}
+          </div>
+        </section>
       </div>
     </div>
   );

@@ -77,7 +77,7 @@ const Dashboard = () => {
                     className="w-full mb-3 rounded-sm"
                   />
 
-                  <div className="absolute opacity-0 backdrop-blur-sm bg-black/50 hover:opacity-100 w-full h-full left-0 top-0 p-6  cursor-pointer">
+                  <div className="absolute opacity-0 backdrop-blur-sm bg-black/50 hover:opacity-100 w-full h-full left-0 top-0 p-6  cursor-pointer transition duration-350 ease-out hover:ease-in">
                     <h2 className="font-bold text-3xl my-2">See Details</h2>
                   </div>
                 </div>

@@ -1,6 +1,7 @@
 import { gql, useApolloClient } from "@apollo/client";
 import Head from "next/head";
 import React, { useCallback, useEffect, useState } from "react";
+import { ImageContainer } from "../components";
 
 const mainURL = `https://arweave.net/`;
 
@@ -19,7 +20,10 @@ const FETCH_IMAGES = gql`
     ) {
       id
       image
+      description
       tags
+      photographer
+      published
     }
   }
 `;
@@ -28,6 +32,19 @@ const Dashboard = () => {
   const [page, setPage] = useState(0);
 
   const [images, setImages] = useState([]);
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggle = () => setIsOpen(!isOpen);
+
+  const [selectedImage, setSelectedImage] = useState({
+    id: "",
+    image: "",
+    description: "",
+    tags: "",
+    photographer: "",
+    published: "",
+  });
 
   const clientApollo = useApolloClient();
 
@@ -50,14 +67,20 @@ const Dashboard = () => {
       .catch((error) => {
         console.error(error);
       });
-  },[clientApollo,page]);
+  }, [clientApollo, page]);
 
   useEffect(() => {
     getImages();
-  }, [getImages,page]);
+  }, [getImages, page]);
+
+  console.log(isOpen)
 
   return (
-    <div className="font-body  relative">
+    <div
+      className={
+        isOpen ? `no-scroll` : `font-body relative`
+      }
+    >
       <Head>
         <title>Imagegram</title>
         <link rel="icon" href="/logo-main.png" />
@@ -83,7 +106,22 @@ const Dashboard = () => {
           <div className="gap-3 columns-3 md:columns-2 sm:columns-1 md:p-2 ">
             {images?.images?.length &&
               images?.images?.map((data) => (
-                <div key={data.id} className="relative">
+                <div
+                  key={data.id}
+                  className="relative"
+                  onClick={() => {
+                    setSelectedImage({
+                      id: data.id,
+                      image: data.image,
+                      description: data.description,
+                      tags: data.tags,
+                      photographer: data.photographer,
+                      published: data.published,
+                    });
+
+                    setIsOpen(!isOpen);
+                  }}
+                >
                   <img
                     src={mainURL + data.image}
                     alt={data.tags}
@@ -124,6 +162,12 @@ const Dashboard = () => {
           )}
         </section>
       </div>
+
+      {isOpen ? (
+        <div className="fixed h-full w-full z-[100] top-0 left-0">
+          <ImageContainer toggle={toggle} selectedImage={selectedImage} />
+        </div>
+      ) : null}
     </div>
   );
 };

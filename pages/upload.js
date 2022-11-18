@@ -2,7 +2,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useRef, useState } from "react";
 import { useBundler } from "../context/bundlrContext";
-import { FundWallet } from "../components";
+import { FundWallet, Header } from "../components";
 import { toast } from "react-toastify";
 import { ethers } from "ethers";
 import { ContractABI } from "../constants/contractABI";
@@ -142,6 +142,8 @@ const Upload = () => {
         <title>Upload || Imagegram</title>
         <link rel="icon" href="/logo-main.png" />
       </Head>
+
+      <Header />
 
       <div className="w-[705px] h-[405px] absolute left-[-353px] top-[-198px] bg-blue-800/50 blur-[150px] rounded-full"></div>
 

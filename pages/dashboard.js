@@ -1,7 +1,7 @@
 import { gql, useApolloClient } from "@apollo/client";
 import Head from "next/head";
 import React, { useCallback, useEffect, useState } from "react";
-import { ImageContainer } from "../components";
+import { Header, ImageContainer } from "../components";
 
 const mainURL = `https://arweave.net/`;
 
@@ -85,6 +85,8 @@ const Dashboard = () => {
         <title>Imagegram</title>
         <link rel="icon" href="/logo-main.png" />
       </Head>
+
+      <Header />
 
       <div className="w-[705px] h-[405px] absolute left-[-353px] top-[-198px] bg-blue-800/50 blur-[150px] rounded-full"></div>
 

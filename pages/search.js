@@ -72,7 +72,6 @@ const Search = () => {
         fetchPolicy: "network-only",
       })
       .then(({ data }) => {
-        console.log(data);
         setImages(data);
       })
       .catch((error) => {

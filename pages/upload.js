@@ -66,8 +66,6 @@ const Upload = () => {
           tag: i?.tags,
           description: i?.description,
         });
-
-        console.log(i);
       })
       .catch((error) => {
         console.error(error);
@@ -95,8 +93,6 @@ const Upload = () => {
     reader.readAsArrayBuffer(uploadedFile);
   }
 
-  console.log(editImageDetails);
-
   const getContract = async () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
 
@@ -123,11 +119,9 @@ const Upload = () => {
       setLoading(true);
 
       if (editImageDetails) {
-        console.log(imageDetails?.image);
         upload(imageDetails?.image);
       } else {
         const url = await uploadFile(file);
-        console.log(url);
         upload(url.data.id);
       }
     }

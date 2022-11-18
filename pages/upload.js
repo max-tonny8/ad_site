@@ -106,6 +106,10 @@ const Upload = () => {
   if (!bundlrInstance) {
     return (
       <div className="justify-center items-center h-screen flex font-body flex-col">
+        <Head>
+          <title>Imagegram || Initialize Bundlr</title>
+          <link rel="icon" href="/logo-main.png" />
+        </Head>
         <h3 className="text-4xl font-bold sm:text-xl">
           Let&apos;s initialise Bundlr now 💱
         </h3>
@@ -128,6 +132,10 @@ const Upload = () => {
   ) {
     return (
       <div className="flex flex-col items-center justify-center h-screen ">
+        <Head>
+          <title>Imagegram || Add Funds</title>
+          <link rel="icon" href="/logo-main.png" />
+        </Head>
         <h3 className="text-4xl font-body text-center">
           Oops! Before Uploading Song Please Add Some Funds.🪙
         </h3>

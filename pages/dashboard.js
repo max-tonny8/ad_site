@@ -76,7 +76,7 @@ const Dashboard = () => {
     <div className="font-body relative">
       <Head>
         <title>Blazon</title>
-        <link rel="icon" href="/logo-main.png" />
+        <link rel="icon" href="/logo.png" />
       </Head>
 
       <Header />

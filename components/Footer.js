@@ -7,7 +7,7 @@ const Footer = () => {
         Designed and Developed by Aakrut
       </h2>
       <div className="flex flex-row items-center justify-center gap-5 md:flex-col">
-        <p className="foot-main">Copyright &copy; 2022 Blazo</p>
+        <p className="foot-main">Copyright &copy; {new Date().getFullYear() } Blazon</p>
         <p className="foot-terms">Terms</p>
         <p className="foot-privacy">Privacy Policy</p>
       </div>

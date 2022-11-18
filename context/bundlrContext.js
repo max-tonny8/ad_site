@@ -9,12 +9,16 @@ const BundlrContext = createContext({
   fundWallet: (_) => {},
   balance: "",
   uploadFile: async (_file) => {},
+  editImageDetails: "",
+  setEditImageDetails: "",
   bundlrInstance: null,
 });
 
 const BundlrContextProvider = ({ children }) => {
   const [bundlrInstance, setBundlrInstance] = useState();
   const [balance, setBalance] = useState("");
+
+  const [editImageDetails, setEditImageDetails] = useState("");
 
   useEffect(() => {
     if (bundlrInstance) {
@@ -109,6 +113,8 @@ const BundlrContextProvider = ({ children }) => {
         fundWallet,
         balance,
         uploadFile,
+        editImageDetails,
+        setEditImageDetails,
         bundlrInstance,
       }}
     >

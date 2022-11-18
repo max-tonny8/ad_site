@@ -1,11 +1,27 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import React, { useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useBundler } from "../context/bundlrContext";
 import { FundWallet, Header } from "../components";
 import { toast } from "react-toastify";
 import { ethers } from "ethers";
 import { ContractABI } from "../constants/contractABI";
+import { gql, useApolloClient } from "@apollo/client";
+
+const mainURL = `https://arweave.net/`;
+
+const FETCH_IMAGES = gql`
+  query images($orderBy: String!, $orderDirection: String!) {
+    images(orderBy: $orderBy, orderDirection: $orderDirection) {
+      id
+      image
+      description
+      tags
+      photographer
+      published
+    }
+  }
+`;
 
 const Upload = () => {
   const [imageDetails, setImageDetails] = useState({
@@ -14,8 +30,13 @@ const Upload = () => {
     description: "",
   });
 
-  const { initialiseBundlr, bundlrInstance, balance, uploadFile } =
-    useBundler();
+  const {
+    initialiseBundlr,
+    bundlrInstance,
+    balance,
+    uploadFile,
+    editImageDetails,
+  } = useBundler();
 
   const [file, setFile] = useState("");
 
@@ -24,6 +45,38 @@ const Upload = () => {
   const router = useRouter();
 
   const dataRef = useRef();
+
+  const clientApollo = useApolloClient();
+
+  const getImages = useCallback(async () => {
+    clientApollo
+      .query({
+        query: FETCH_IMAGES,
+        variables: {
+          orderBy: "createdAt",
+          orderDirection: "desc",
+        },
+        fetchPolicy: "network-only",
+      })
+      .then(({ data }) => {
+        const i = data.images.find((image) => image.id === editImageDetails);
+
+        setImageDetails({
+          image: i?.image,
+          tag: i?.tags,
+          description: i?.description,
+        });
+
+        console.log(i);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, [clientApollo, editImageDetails]);
+
+  useEffect(() => {
+    getImages();
+  }, [getImages]);
 
   function triggerOnChange() {
     dataRef.current.click();
@@ -41,6 +94,8 @@ const Upload = () => {
     };
     reader.readAsArrayBuffer(uploadedFile);
   }
+
+  console.log(editImageDetails);
 
   const getContract = async () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -66,8 +121,15 @@ const Upload = () => {
       toast.error("Please Select a Description for Image");
     } else {
       setLoading(true);
-      const url = await uploadFile(file);
-      upload(url.data.id)
+
+      if (editImageDetails) {
+        console.log(imageDetails?.image);
+        upload(imageDetails?.image);
+      } else {
+        const url = await uploadFile(file);
+        console.log(url);
+        upload(url.data.id);
+      }
     }
   };
 
@@ -77,12 +139,22 @@ const Upload = () => {
 
       const uploadDate = String(new Date());
 
-      await contract.uploadImage(
-        imgURL,
-        imageDetails?.description,
-        imageDetails?.tag,
-        uploadDate
-      );
+      if (editImageDetails) {
+        await contract.updateImage(
+          editImageDetails,
+          imgURL,
+          imageDetails?.description,
+          imageDetails?.tag,
+          uploadDate
+        );
+      } else {
+        await contract.uploadImage(
+          imgURL,
+          imageDetails?.description,
+          imageDetails?.tag,
+          uploadDate
+        );
+      }
 
       setLoading(false);
 
@@ -94,7 +166,12 @@ const Upload = () => {
 
       setFile("");
 
-      toast.success("Uploaded on Imagegram 🖼️");
+      if (editImageDetails) {
+        toast.success("Updated on Imagegram 🖼️");
+      } else {
+        toast.success("Uploaded on Imagegram 🖼️");
+      }
+
       router.push("/dashboard");
     } catch (error) {
       console.error(error);
@@ -159,23 +236,31 @@ const Upload = () => {
         <section className="max-w-[1240px] h-screen my-0 mx-auto grid grid-cols-2 items-center justify-center gap-8 md:order-second md:grid-cols-1 p-6 ">
           <div
             className="w-full bg-[#272D37]/60 rounded-3xl sm:h-[350px] h-[589px] border border-solid border-sky-700 cursor-pointer"
-            onClick={triggerOnChange}
+            onClick={editImageDetails ? null : triggerOnChange}
           >
             <input
               id="selectImage"
               style={{ display: "none" }}
               type="file"
-              onChange={handleFileChange}
+              onChange={editImageDetails ? null : handleFileChange}
               ref={dataRef}
             />
             {imageDetails.image ? (
               <div className="w-full h-full flex justify-center items-center">
-                <img
-                  src={window.URL.createObjectURL(imageDetails.image)}
-                  alt="image"
-                  ref={imageDetails.image}
-                  className="w-full h-full  sm:h-[350px] rounded-3xl p-2"
-                />
+                {editImageDetails ? (
+                  <img
+                    src={mainURL + imageDetails?.image}
+                    alt="image"
+                    className="w-full h-full  sm:h-[350px] rounded-3xl p-2"
+                  />
+                ) : (
+                  <img
+                    src={window.URL.createObjectURL(imageDetails?.image)}
+                    alt="image"
+                    ref={imageDetails?.image}
+                    className="w-full h-full  sm:h-[350px] rounded-3xl p-2"
+                  />
+                )}
               </div>
             ) : (
               <div className="h-full  flex justify-center items-center">
@@ -227,14 +312,25 @@ const Upload = () => {
               />
             </div>
 
-            <button
-              type="button"
-              className="bg-[#1E50FF] outline-none border-none py-3 px-5 rounded-xl font-body cursor-pointer transition duration-250 ease-in-out  hover:drop-shadow-xl hover:shadow-sky-600 w-auto focus:scale-90 sm:mb-10 md:mb-10"
-              onClick={handleUpload}
-              disabled={loading}
-            >
-              {loading ? "Please Wait..." : "Upload"}
-            </button>
+            {editImageDetails ? (
+              <button
+                type="button"
+                className="bg-[#1E50FF] outline-none border-none py-3 px-5 rounded-xl font-body cursor-pointer transition duration-250 ease-in-out  hover:drop-shadow-xl hover:shadow-sky-600 w-auto focus:scale-90 sm:mb-10 md:mb-10"
+                onClick={handleUpload}
+                disabled={loading}
+              >
+                {loading ? "Updating..." : "Update Details"}
+              </button>
+            ) : (
+              <button
+                type="button"
+                className="bg-[#1E50FF] outline-none border-none py-3 px-5 rounded-xl font-body cursor-pointer transition duration-250 ease-in-out  hover:drop-shadow-xl hover:shadow-sky-600 w-auto focus:scale-90 sm:mb-10 md:mb-10"
+                onClick={handleUpload}
+                disabled={loading}
+              >
+                {loading ? "Please Wait..." : "Upload"}
+              </button>
+            )}
           </div>
         </section>
       </div>

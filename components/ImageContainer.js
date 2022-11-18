@@ -33,7 +33,7 @@ const ImageContainer = ({ toggle, selectedImage }) => {
     const imageURL = URL.createObjectURL(imageBlob);
     const link = document.createElement("a");
     link.href = imageURL;
-    link.download = "Imagegram-" + duplicateName + "";
+    link.download = "Blazon-" + duplicateName + "";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);

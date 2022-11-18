@@ -2,6 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { Footer } from "../components";
 import Dashboard from "./dashboard";
 
 export default function Home() {
@@ -29,7 +30,7 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>Imagegram</title>
+        <title>Blazon</title>
         <link rel="icon" href="/favicon.io" />
       </Head>
       <div className="relative font-body overflow-hidden ">
@@ -39,10 +40,10 @@ export default function Home() {
           <section className="max-w-[1440px] my-0 h-screen mx-auto grid grid-cols-2 items-center justify-center gap-3 md:order-second md:grid-cols-1 ">
             <div className="flex flex-col p-1 md:items-center md:justify-center sm:p-2 md:h-screen md:p-8">
               <h1 className="font-body text-6xl md:text-5xl md:text-center font-bold my-1 text-transparent bg-clip-text bg-gradient-to-r from-sky-500 to-blue-800 leading-[120px] md:leading-normal sm:text-[30px] ">
-                Imagegram
+                Blazon
               </h1>
               <p className="text-[#979797] text-[20px] md:text-center md:text-base my-1">
-                Imagegram is a Decentralized Image Web App built with Solidity,
+                Blazon is a Decentralized Image Web App built with Solidity,
                 Hardhat, NextJS, Arweave + Bundlr Client, and Tailwind CSS.
               </p>
               <button

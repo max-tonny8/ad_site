@@ -2,7 +2,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useBundler } from "../context/bundlrContext";
-import { FundWallet, Header } from "../components";
+import { Footer, FundWallet, Header } from "../components";
 import { toast } from "react-toastify";
 import { ethers } from "ethers";
 import { ContractABI } from "../constants/contractABI";
@@ -110,7 +110,7 @@ const Upload = () => {
     const { image, tag, description } = imageDetails;
 
     if (!image) {
-      toast.error("Please Select an Image for Imagegram");
+      toast.error("Please Select an Image for Blazon");
     } else if (!tag) {
       toast.error("Please Select a Tag for Image");
     } else if (!description) {
@@ -161,9 +161,9 @@ const Upload = () => {
       setFile("");
 
       if (editImageDetails) {
-        toast.success("Updated on Imagegram 🖼️");
+        toast.success("Updated on Blazon 🖼️");
       } else {
-        toast.success("Uploaded on Imagegram 🖼️");
+        toast.success("Uploaded on Blazon 🖼️");
       }
 
       router.push("/dashboard");
@@ -178,7 +178,7 @@ const Upload = () => {
     return (
       <div className="justify-center items-center h-screen flex font-body flex-col">
         <Head>
-          <title>Imagegram || Initialize Bundlr</title>
+          <title>Blazon || Initialize Bundlr</title>
           <link rel="icon" href="/logo-main.png" />
         </Head>
         <h3 className="text-4xl font-bold sm:text-xl">
@@ -204,7 +204,7 @@ const Upload = () => {
     return (
       <div className="flex flex-col items-center justify-center h-screen ">
         <Head>
-          <title>Imagegram || Add Funds</title>
+          <title>Blazon || Add Funds</title>
           <link rel="icon" href="/logo-main.png" />
         </Head>
         <h3 className="text-4xl font-body text-center">
@@ -218,7 +218,7 @@ const Upload = () => {
   return (
     <div className="font-body  relative ">
       <Head>
-        <title>Upload || Imagegram</title>
+        <title>Upload || Blazon</title>
         <link rel="icon" href="/logo-main.png" />
       </Head>
 
@@ -258,9 +258,7 @@ const Upload = () => {
               </div>
             ) : (
               <div className="h-full  flex justify-center items-center">
-                <h2 className="text-center">
-                  Please Select Image for Imagegram
-                </h2>
+                <h2 className="text-center">Please Select Image for Blazon</h2>
               </div>
             )}
           </div>

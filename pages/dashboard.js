@@ -1,7 +1,7 @@
 import { gql, useApolloClient } from "@apollo/client";
 import Head from "next/head";
 import React, { useCallback, useEffect, useState } from "react";
-import { Header, ImageContainer } from "../components";
+import { Footer, Header, ImageContainer } from "../components";
 
 const mainURL = `https://arweave.net/`;
 
@@ -75,7 +75,7 @@ const Dashboard = () => {
   return (
     <div className="font-body relative">
       <Head>
-        <title>Imagegram</title>
+        <title>Blazon</title>
         <link rel="icon" href="/logo-main.png" />
       </Head>
 
@@ -86,7 +86,7 @@ const Dashboard = () => {
       <div>
         <div className="flex gap-5 max-w-[1240px] mx-auto my-20 items-center justify-center ">
           <h1 className="font-semibold text-5xl text-transparent bg-clip-text bg-gradient-to-r from-sky-500 to-blue-800 ">
-            Imagegram
+            Blazon
           </h1>
           <img src="/logo.png" alt="logo" className="w-[50px] h-[50px]" />
         </div>
@@ -163,6 +163,8 @@ const Dashboard = () => {
           <ImageContainer toggle={toggle} selectedImage={selectedImage} />
         </div>
       ) : null}
+
+      <Footer />
     </div>
   );
 };

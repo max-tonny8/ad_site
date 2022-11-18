@@ -1,7 +1,7 @@
 import { useApolloClient, gql } from "@apollo/client";
 import Head from "next/head";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { Header, ImageContainer, SongContainer } from "../components";
+import { Footer, Header, ImageContainer, SongContainer } from "../components";
 import { truncateEthAddress } from "../utils/truncAddress";
 
 const mainURL = `https://arweave.net/`;
@@ -86,7 +86,7 @@ const Search = () => {
   return (
     <div>
       <Head>
-        <title>Imagegram Search</title>
+        <title>Blazon Search</title>
         <link rel="icon" href="/logo-main.png" />
       </Head>
       <Header />

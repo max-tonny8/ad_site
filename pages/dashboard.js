@@ -73,14 +73,8 @@ const Dashboard = () => {
     getImages();
   }, [getImages, page]);
 
-  console.log(isOpen)
-
   return (
-    <div
-      className={
-        isOpen ? `no-scroll` : `font-body relative`
-      }
-    >
+    <div className="font-body relative">
       <Head>
         <title>Imagegram</title>
         <link rel="icon" href="/logo-main.png" />

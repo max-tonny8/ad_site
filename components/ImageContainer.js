@@ -1,12 +1,25 @@
 import Head from "next/head";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { truncateEthAddress } from "../utils/truncAddress";
 import moment from "moment";
-import { CloseSquare } from "iconsax-react";
+import { CloseSquare, Edit, Edit2 } from "iconsax-react";
+import { useBundler } from "../context/bundlrContext";
+import { useRouter } from "next/router";
 
 const mainURL = `https://arweave.net/`;
 
 const ImageContainer = ({ toggle, selectedImage }) => {
+  const [addr, setAddr] = useState("");
+
+  const { setEditImageDetails } = useBundler();
+
+  const router = useRouter();
+
+  useEffect(() => {
+    const addr = localStorage.getItem("walletAddress");
+    setAddr(addr);
+  }, []);
+
   return (
     <div
       className="w-full h-full  backdrop-blur-sm bg-black/50 flex items-center justify-center font-body "
@@ -45,6 +58,26 @@ const ImageContainer = ({ toggle, selectedImage }) => {
           <p className="my-2 sm:my-1">
             Published: {moment(selectedImage.published).format("MMM Do YY")}
           </p>
+
+          {selectedImage?.photographer === addr ? (
+            <div
+              className={`${
+                selectedImage.photographer === addr
+                  ? `block cursor-pointer`
+                  : `hidden`
+              } `}
+            >
+              <button
+                className="bg-black/40 outline-none border-none py-3 px-5 rounded-full font-body cursor-pointer transition duration-250 ease-in-out  hover:drop-shadow-xl hover:shadow-black/100  hover:bg-black w-auto focus:scale-90 flex items-center justify-center gap-2"
+                onClick={() => {
+                  setEditImageDetails(selectedImage.id);
+                  router.push("/upload");
+                }}
+              >
+                <Edit size="32" color="#d9e3f0" /> Edit Details
+              </button>
+            </div>
+          ) : null}
         </div>
       </section>
     </div>

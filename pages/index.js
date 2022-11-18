@@ -2,7 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { Footer } from "../components";
+import {mockupData} from '../constants/data'
 import Dashboard from "./dashboard";
 
 export default function Home() {
@@ -26,6 +26,8 @@ export default function Home() {
       console.error(error);
     }
   };
+
+  console.log(mockupData)
 
   return (
     <div>
@@ -54,12 +56,16 @@ export default function Home() {
               </button>
             </div>
 
-            <div className="flex items-center justify-center h-full w-full relative">
-              <img
-                src="https://images.unsplash.com/photo-1662865433800-dae637c7b735?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=327&q=80"
-                alt="mockup"
-                className="h-fit w-fit"
-              />
+            <div className="gap-3 columns-3 ">
+              {mockupData?.map((data) => (
+                <div className="w-full rounded-sm h-full" key={data.id}>
+                  <img
+                    src={data?.url}
+                    alt={data?.title}
+                    className="w-full mb-3 rounded-sm h-full"
+                  />
+                </div>
+              ))}
             </div>
           </section>
         )}

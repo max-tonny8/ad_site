@@ -68,7 +68,7 @@ const ImageContainer = ({ toggle, selectedImage }) => {
               } `}
             >
               <button
-                className="bg-black/40 outline-none border-none py-3 px-5 rounded-full font-body cursor-pointer transition duration-250 ease-in-out  hover:drop-shadow-xl hover:shadow-black/100  hover:bg-black w-auto focus:scale-90 flex items-center justify-center gap-2"
+                className="bg-black/40 outline-none border-none py-3 px-5 rounded-3xl font-body cursor-pointer transition duration-250 ease-in-out  hover:drop-shadow-xl hover:shadow-black/100  hover:bg-black w-auto focus:scale-90 flex items-center justify-center gap-2"
                 onClick={() => {
                   setEditImageDetails(selectedImage.id);
                   router.push("/upload");

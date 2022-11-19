@@ -8,7 +8,7 @@ const Error = () => {
   return (
     <div className="font-body relative overflow-hidden">
       <Head>
-        <title>Blazon</title>
+        <title>Error 404 || Blazon</title>
         <link rel="icon" href="/logo.png" />
       </Head>
 

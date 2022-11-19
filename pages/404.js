@@ -17,7 +17,7 @@ const Error = () => {
       <div className="w-[705px] h-[405px] absolute right-[-353px] bottom-[-198px] bg-blue-800/50 blur-[150px] rounded-full -z-10"></div>
 
       <section className="h-screen flex items-center justify-center flex-col gap-5  motion">
-        <h1 className="text-5xl font-bold  text-transparent bg-clip-text bg-gradient-to-r from-sky-500 to-blue-800 ">
+        <h1 className="text-8xl font-bold  text-transparent bg-clip-text bg-gradient-to-r from-sky-500 to-blue-800 ">
           404
         </h1>
         <p className="text-xl font-semibold text-white/70">

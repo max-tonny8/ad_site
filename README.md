@@ -1,4 +1,4 @@
-# Blazon
+# Blazon <img src="https://user-images.githubusercontent.com/67114280/202886252-41a2faa0-82a7-41b6-9cd5-4b5afc3945be.png" alt="logo" width="35px" height="35px" align="center" />
 
 <img width="1600" alt="credit" src="https://user-images.githubusercontent.com/67114280/202843782-2eddd24a-f536-4fe1-af20-3300ac16d092.png">
 

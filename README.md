@@ -18,7 +18,7 @@
 - Smart Contract Lang : [Solidity](https://docs.soliditylang.org/en/v0.8.17/)
 - Indexing :  [The Graph](https://thegraph.com/en/)
 - Dev Environment for ETH Software: [Hardhat](https://hardhat.org/)
-- Testing: [Chai](https://www.chaijs.com/)
+- Testing: [Chaijs](https://www.chaijs.com/)
 - File Storage : [Arweave](https://www.arweave.org/)
 - Scaling Permenant Storage - [Bundlr.network](https://bundlr.network/)
 - Network : [Polygon](https://polygon.technology/)

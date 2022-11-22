@@ -21,7 +21,7 @@
 - Testing: [Chaijs](https://www.chaijs.com/)
 - File Storage : [Arweave](https://www.arweave.org/)
 - Scaling Permenant Storage - [Bundlr.network](https://bundlr.network/)
-- Network : [Polygon](https://polygon.technology/)
+- Network : [Polygon Mumbai](https://polygon.technology/)
 - Style : [Tailwind CSS](https://tailwindcss.com/)
 - State management : [GraphQL Apollo Client](https://www.apollographql.com/)
 - Toast: [React Toastify](https://fkhadra.github.io/react-toastify/introduction/)

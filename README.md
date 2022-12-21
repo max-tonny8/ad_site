@@ -14,6 +14,7 @@
 
 ### Stack
 
+- Language : [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 - Frontend : [Next Js](https://nextjs.org/)
 - Smart Contract Lang : [Solidity](https://docs.soliditylang.org/en/v0.8.17/)
 - Indexing :  [The Graph](https://thegraph.com/en/)

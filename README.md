@@ -2,8 +2,6 @@
 
 <img width="1600" alt="credit" src="https://user-images.githubusercontent.com/67114280/202843782-2eddd24a-f536-4fe1-af20-3300ac16d092.png">
 
-### Blazon is Decentralize Image App Built with Next Js, Hardhat, Solidity, Arweave + Bundlr Client and all of the style magic with Tailwind CSS.
-
 ### Functionalities
 
 - [x] Upload Image
